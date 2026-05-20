@@ -1,0 +1,697 @@
+/* ---------- SEPARATED CSS: BASE & LAYOUT ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+}
+body {
+    background: #f0f2f5;
+    padding: 24px;
+    min-height: 100vh;
+}
+.main-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+}
+
+/* Top-right info buttons */
+.top-info-bar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    gap: 15px;
+    z-index: 100;
+}
+.info-bubble {
+    background: white;
+    border-radius: 40px;
+    padding: 10px 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    color: #0b3b5f;
+    border: 1px solid #e2e8f0;
+}
+.info-bubble:hover {
+    transform: translateY(-2px);
+    background: #f8fafc;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+.info-bubble.about {
+    background: linear-gradient(135deg, #2c5f2d20, #1e3a1e10);
+    border-left: 3px solid #2c5f2d;
+}
+.info-bubble.team {
+    background: linear-gradient(135deg, #9c27b020, #6a1b9a10);
+    border-left: 3px solid #9c27b0;
+}
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(3px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.2s;
+}
+.modal-overlay.active {
+    visibility: visible;
+    opacity: 1;
+}
+.modal-content {
+    background: white;
+    border-radius: 32px;
+    max-width: 500px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: 28px;
+    box-shadow: 0 30px 50px rgba(0,0,0,0.3);
+    position: relative;
+    animation: fadeInUp 0.2s ease;
+}
+@keyframes fadeInUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+.modal-header {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e2e8f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: #64748b;
+}
+.member-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 12px 0;
+}
+.member-name {
+    font-weight: 700;
+    color: #2c3e66;
+    min-width: 120px;
+}
+.member-prn {
+    font-size: 12px;
+    color: #475569;
+    font-family: monospace;
+    margin: 0 10px;
+}
+.member-email a {
+    color: #0b3b5f;
+    text-decoration: none;
+    font-size: 13px;
+}
+.member-email a:hover {
+    text-decoration: underline;
+    color: #9e2b2b;
+}
+.modal-body p, .modal-body ul {
+    margin-bottom: 12px;
+    line-height: 1.5;
+    color: #1e293b;
+}
+.modal-body ul {
+    padding-left: 24px;
+}
+
+/* Login & Cards */
+.login-grid {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin: 80px auto 60px;
+}
+.login-card {
+    background: white;
+    border-radius: 28px;
+    width: 320px;
+    overflow: hidden;
+    box-shadow: 0 20px 35px -12px rgba(0,0,0,0.2);
+    transition: 0.25s;
+    cursor: pointer;
+}
+.login-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 28px 40px -16px rgba(0,0,0,0.25);
+}
+.card-header {
+    padding: 32px 24px;
+    text-align: center;
+    color: white;
+}
+.teacher-header {
+    background: linear-gradient(135deg, #0b3b5f, #002b4a);
+}
+.student-header {
+    background: linear-gradient(135deg, #9e2b2b, #6a1a1a);
+}
+.card-header h2 {
+    font-size: 26px;
+    font-weight: 600;
+}
+.card-body {
+    padding: 28px 24px;
+    text-align: center;
+}
+.login-btn {
+    background: #0b3b5f;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 40px;
+    font-weight: bold;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+}
+.student-login-btn {
+    background: #9e2b2b;
+}
+
+/* Forms & Dashboard Cards */
+.form-card, .dashboard-card {
+    background: white;
+    border-radius: 28px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+    padding: 32px;
+    max-width: 600px;
+    margin: 20px auto;
+}
+.dashboard-card {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0;
+    overflow: hidden;
+}
+.form-group {
+    margin-bottom: 20px;
+}
+.form-group label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 8px;
+    color: #1e4663;
+}
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 14px;
+    font-size: 15px;
+}
+.submit-btn {
+    background: #0b3b5f;
+    color: white;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 40px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+}
+.back-link {
+    text-align: center;
+    margin-top: 18px;
+    color: #0b3b5f;
+    cursor: pointer;
+    text-decoration: underline;
+}
+.dashboard-header {
+    background: linear-gradient(135deg, #0b3b5f, #01233a);
+    padding: 20px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+.tab-buttons {
+    display: flex;
+    gap: 12px;
+    padding: 20px 28px 0 28px;
+    background: white;
+    border-bottom: 1px solid #e2e8f0;
+    flex-wrap: wrap;
+}
+.tab-btn {
+    background: none;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: 0.2s;
+    color: #2c3e66;
+}
+.tab-btn.active {
+    background: #0b3b5f;
+    color: white;
+}
+.tab-content {
+    padding: 28px;
+    display: none;
+    background: white;
+}
+.tab-content.active {
+    display: block;
+}
+
+/* Bucket & Question Components */
+.bucket-card {
+    background: #fefefe;
+    border-radius: 20px;
+    border: 1px solid #e2edf7;
+    padding: 18px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+}
+.bucket-title {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 14px;
+}
+.bucket-title input {
+    flex: 1;
+    font-weight: bold;
+    font-size: 16px;
+    border: 1px solid #cbd5e1;
+    border-radius: 40px;
+    padding: 8px 14px;
+    background: #f8fafc;
+}
+.difficulty-section {
+    margin: 12px 0 8px 0;
+}
+.difficulty-label {
+    font-weight: 600;
+    font-size: 13px;
+    margin-top: 8px;
+    color: #2d4a6e;
+}
+.question-list {
+    background: #f9f9fc;
+    border-radius: 12px;
+    padding: 8px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+.question-item {
+    background: white;
+    padding: 10px;
+    margin: 6px 0;
+    border-radius: 8px;
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-left: 3px solid #0b3b5f;
+    gap: 10px;
+}
+.question-text {
+    flex: 1;
+    line-height: 1.5;
+}
+.delete-question {
+    background: #dc2626;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 4px 12px;
+    cursor: pointer;
+    font-size: 11px;
+}
+.add-question-form {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+}
+.add-question-form input {
+    flex: 2;
+    min-width: 200px;
+    padding: 8px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    font-size: 13px;
+}
+.latex-example-hint {
+    background: #f0f9ff;
+    border-left: 4px solid #0b3b5f;
+    padding: 8px 12px;
+    border-radius: 14px;
+    font-size: 12px;
+    color: #1e4663;
+    margin: 5px 0 0 0;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+}
+.latex-example-hint code {
+    background: #e6f0fa;
+    padding: 3px 8px;
+    border-radius: 20px;
+    font-family: monospace;
+    font-size: 11px;
+    color: #0b3b5f;
+}
+.add-question-btn {
+    background: #0b3b5f;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 6px 16px;
+    cursor: pointer;
+}
+.save-bucket-btn {
+    background: #2c6e2c;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 6px 16px;
+    margin-top: 12px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.blueprint-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #f9f9fc;
+    margin: 10px 0;
+    padding: 12px 18px;
+    border-radius: 18px;
+    flex-wrap: wrap;
+}
+.blueprint-controls {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+.blueprint-controls input {
+    width: 70px;
+    text-align: center;
+    padding: 8px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+}
+.action-btn {
+    padding: 10px 20px;
+    border-radius: 40px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+.btn-primary {
+    background: #0b3b5f;
+    color: white;
+}
+.btn-secondary {
+    background: #5f6c80;
+    color: white;
+}
+.save-global {
+    background: #1f8a4c;
+    color: white;
+    padding: 12px 28px;
+    border-radius: 40px;
+    border: none;
+    margin-top: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.template-card {
+    background: #f1f5f9;
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+.template-name {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #0b3b5f;
+}
+.small-btn {
+    background: #2c5282;
+    padding: 6px 14px;
+    border-radius: 30px;
+    font-size: 12px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-left: 8px;
+}
+.delete-template {
+    background: #b91c1c;
+}
+.student-container {
+    background: white;
+    border-radius: 28px;
+    padding: 28px;
+}
+.hidden {
+    display: none;
+}
+.error-msg {
+    color: #c00;
+    margin-top: 12px;
+}
+.success-msg {
+    color: #1f8a4c;
+}
+.inline-group {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.paper-name-input {
+    padding: 10px 16px;
+    border-radius: 30px;
+    border: 1px solid #ccc;
+    flex: 1;
+    min-width: 200px;
+}
+.excel-import-card {
+    background: #f0f9ff;
+    border: 2px dashed #0b3b5f;
+    border-radius: 24px;
+    padding: 20px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+.file-label {
+    background: #0b3b5f;
+    color: white;
+    padding: 10px 24px;
+    border-radius: 40px;
+    cursor: pointer;
+    font-weight: bold;
+    display: inline-block;
+}
+.import-info {
+    font-size: 13px;
+    color: #2c5282;
+    margin-top: 8px;
+}
+.latex-hint {
+    background: #fef3c7;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    color: #b45309;
+    margin-left: 10px;
+}
+.stats-badge {
+    background: #e0e7ff;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-size: 11px;
+    margin-left: 8px;
+}
+.publish-toggle {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #f1f5f9;
+    padding: 8px 18px;
+    border-radius: 50px;
+    margin-left: auto;
+}
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 52px;
+    height: 26px;
+}
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.3s;
+    border-radius: 34px;
+}
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.3s;
+    border-radius: 50%;
+}
+input:checked + .slider {
+    background-color: #1f8a4c;
+}
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+.toggle-label {
+    font-weight: 600;
+    font-size: 14px;
+}
+.toggle-status {
+    font-size: 13px;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 20px;
+}
+.status-on {
+    background: #1f8a4c20;
+    color: #1f8a4c;
+}
+.status-off {
+    background: #b91c1c20;
+    color: #b91c1c;
+}
+.blueprint-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+.session-active-card, .session-expired-card {
+    border-radius: 24px;
+    padding: 24px;
+    text-align: center;
+    margin-top: 30px;
+}
+.session-active-card {
+    background: #dcfce7;
+    border: 1px solid #22c55e;
+}
+.session-expired-card {
+    background: #fee2e2;
+    border: 1px solid #ef4444;
+}
+.download-student-btn {
+    background: #9e2b2b;
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 40px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+}
+.history-session-card {
+    background: #f8fafc;
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 12px;
+    border-left: 5px solid #0b3b5f;
+}
+.math-inline {
+    display: inline;
+}
+.math-display {
+    display: block;
+    margin: 10px 0;
+    text-align: center;
+}
+.guide-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 10px;
+}
+.guide-card {
+    background: white;
+    border-radius: 16px;
+    padding: 10px 14px;
+    flex: 1 1 200px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.guide-card strong {
+    color: #0b3b5f;
+}
+.small-mono {
+    font-family: monospace;
+    background: #edf2f7;
+    padding: 2px 6px;
+    border-radius: 12px;
+    font-size: 12px;
+}
+.latex-syntax-guide {
+    background: #fef9e3;
+    border-radius: 24px;
+    padding: 18px;
+    margin-top: 20px;
+    border: 1px solid #ffe0a3;
+}
